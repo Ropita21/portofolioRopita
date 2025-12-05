@@ -1,106 +1,64 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import { FaDownload, FaChartLine } from 'react-icons/fa';
 
-// Gaya untuk latar belakang dan pseudo-elemen bintang
-const homeStyle = {
-  backgroundColor: '#0a1930', // Biru gelap
-  color: 'white',
-  padding: '100px 0',
-  minHeight: '100vh',
-  position: 'relative',
-  overflow: 'hidden'
-};
-
-// Komponen Bintang sederhana (JSX)
-const Star = ({ top, left, size, color }) => (
-  <div 
-    style={{
-      position: 'absolute',
-      top: top,
-      left: left,
-      width: size,
-      height: size,
-      backgroundColor: color,
-      borderRadius: '50%',
-      transform: 'rotate(45deg)',
-      opacity: 0.8
-    }} 
-  />
-);
-
-const Home = () => {
-  // Ganti dengan URL gambar Anda
-  const imageUrl = "https://via.placeholder.com/300x300.png?text=FOTO+ANDA"; 
-  
+// Komponen Home menerima prop setActivePage untuk navigasi tombol
+const Home = ({ setActivePage }) => {
   return (
-    <div id="home" style={homeStyle}>
-      {/* Elemen JSX untuk Bintang */}
-      <Star top="10%" left="15%" size="10px" color="#ff9000" />
-      <Star top="25%" left="45%" size="12px" color="white" />
-      <Star top="75%" left="30%" size="8px" color="#ff9000" />
-      <Star top="85%" left="10%" size="15px" color="white" />
-      
-      <Container>
-        <Row className="align-items-center">
-          <Col md={6}>
-            <p className="lead" style={{ fontSize: '1.2rem' }}>Hi, I'm</p>
-            <h1 className="display-4 fw-bold mb-3">ROPITA Y SITUMORANG</h1>
-            <h4 className="text-warning mb-4">Empowering Businesses with Insights</h4>
-            <p className="mb-4">
-              <small>Mahasiswa Data Analyst yang fokus pada pengolahan data besar, visualisasi, dan pemodelan statistik untuk pengambilan keputusan yang lebih baik.</small>
-            </p>
-            {/* Tombol dengan ikon dan link download */}
-            <Button 
-              variant="warning" 
-              size="lg" 
-              className="fw-bold py-2 px-4 me-3" 
-              style={{ backgroundColor: '#ff9000', borderColor: '#ff9000', color: 'white' }}
-              href="/resume.pdf"
-              download
-            >
-              RESUME <FaDownload className="ms-2" />
-            </Button>
-          </Col>
-
-          <Col md={6} className="text-center position-relative">
-            {/* Foto dan outline oranye (JSX styling) */}
-            <div style={{ 
-              display: 'inline-block', 
-              borderRadius: '50%', 
-              border: '5px solid #ff9000', 
-              padding: '5px',
-              backgroundColor: 'white'
-            }}>
+    <section className="d-flex flex-column align-items-center justify-content-center text-center min-vh-100 pt-5">
+      <div className="container">
+        
+        {/* --- FOTO PROFIL (ANIMASI MELAYANG) --- */}
+        <div className="mb-4 d-flex justify-content-center animate-float">
+           <div className="rounded-circle bg-dark border border-secondary position-relative d-flex align-items-center justify-content-center overflow-hidden" 
+                style={{width: '160px', height: '160px', boxShadow: '0 0 50px rgba(121, 80, 242, 0.4)'}}>
+              {/* Ganti src dengan foto profilmu */}
               <img 
-                src={imageUrl} 
-                alt="Brandon A. Harper" 
-                style={{ 
-                  width: '300px', 
-                  height: '300px', 
-                  borderRadius: '50%', 
-                  objectFit: 'cover'
-                }} 
+                src="https://via.placeholder.com/160" 
+                alt="Profile" 
+                className="w-100 h-100 object-fit-cover" 
               />
+           </div>
+        </div>
+
+        {/* --- JUDUL BESAR --- */}
+        <h1 className="display-3 fw-bold mb-4 text-white">
+          Hi, I'm <br />
+          <span className="text-gradient">ADINDA DWI RAMADHANI</span>
+        </h1>
+        
+        {/* --- DESKRIPSI --- */}
+        <p className="text-white-50 mb-5 mx-auto fs-4" style={{ maxWidth: '700px' }}>
+          Saya seorang <span className="text-white fw-bold">Junior Developer</span>
+        </p>
+        
+        {/* --- TOMBOL MAGIC --- */}
+        <div className="d-flex justify-content-center gap-3 mb-5">
+           {/* Tombol Lihat Project (Pindah ke halaman Projects) */}
+           <button className="btn-magic" onClick={() => setActivePage('projects')}>
+              <span className="btn-magic-inner">Lihat Project Saya</span>
+           </button>
+           
+           {/* Tombol Hubungi Saya (Pindah ke halaman Contact) */}
+           <button className="btn btn-outline-light rounded-pill px-4 py-2" onClick={() => setActivePage('contact')}>
+              Hubungi Saya
+           </button>
+        </div>
+
+        {/* --- TECH STACK CARD --- */}
+        <div className="mt-5 mx-auto animate-float-delay" style={{maxWidth: '800px'}}>
+          <div className="card-glass p-4">
+            <h5 className="text-white-50 mb-4 small text-uppercase" style={{letterSpacing: '2px'}}>Technical Arsenal</h5>
+            <div className="d-flex flex-wrap justify-content-center gap-3">
+               {['React', 'Node.js', 'Unity', 'Python', 'MySQL', 'Red Hat'].map((tech) => (
+                  <span key={tech} className="badge-tech">
+                    {tech}
+                  </span>
+               ))}
             </div>
-            
-            {/* Kotak Jabatan oranye di bawah (JSX styling) */}
-            <div style={{
-              position: 'absolute',
-              bottom: '-30px', 
-              left: '50%',
-              transform: 'translateX(-50%)',
-              backgroundColor: '#ff9000',
-              padding: '10px 30px',
-              borderRadius: '8px',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-            }}>
-              <FaChartLine className="me-2" /> **Data Analyst**
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
   );
 };
 
