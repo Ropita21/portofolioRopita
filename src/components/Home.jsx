@@ -1,21 +1,54 @@
 import React from 'react';
+import { FaDownload } from 'react-icons/fa'; // Import Icon Download
 
 const Home = ({ setActivePage }) => {
   
   // --- PENGATURAN FOTO PROFIL ---
+  // Pastikan file gambar ada di folder public
   const profileImg = "/poto.png"; 
 
   return (
-   
     <section 
       id="home"
       className="d-flex flex-column align-items-center justify-content-center text-center min-vh-100"
       style={{ paddingTop: '120px' }} 
     >
+      {/* --- STYLE KHUSUS ANIMASI TOMBOL --- */}
+      <style>
+        {`
+          @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(0, 198, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 198, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 198, 255, 0); }
+          }
+          .btn-cv-animated {
+            background: linear-gradient(90deg, #00C6FF 0%, #0072FF 100%);
+            border: none;
+            color: white !important;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: pulse-glow 2s infinite; /* Animasi Denyut */
+          }
+          .btn-cv-animated:hover {
+            transform: translateY(-5px); /* Efek naik saat di-hover */
+            box-shadow: 0 10px 25px rgba(0, 198, 255, 0.5);
+          }
+          /* Animasi Icon panah turun naik saat hover */
+          .btn-cv-animated:hover .icon-bounce {
+            animation: bounce 0.5s infinite alternate;
+          }
+          @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(3px); }
+          }
+        `}
+      </style>
+
       <div className="container">
         
         {/* --- FOTO PROFIL --- */}
-        <div className="mb-4 d-flex justify-content-center animate-float">
+        <div className="mb-4 d-flex justify-content-center">
            <div className="rounded-circle bg-dark border border-secondary position-relative d-flex align-items-center justify-content-center overflow-hidden" 
                 style={{width: '200px', height: '200px', boxShadow: '0 0 50px rgba(0, 198, 255, 0.4)'}}>
               
@@ -46,11 +79,16 @@ const Home = ({ setActivePage }) => {
           Mahasiswa Data Analyst yang fokus pada pengolahan data besar, visualisasi, dan pemodelan statistik untuk pengambilan keputusan yang lebih baik.
         </p>
         
-        {/* --- TOMBOL --- */}
+        {/* --- TOMBOL DOWNLOAD CV (UPDATED) --- */}
         <div className="d-flex justify-content-center gap-3">
-           {/* Tombol Resume */}
-           <a href="/resume.pdf" download className="btn btn-outline-light btn-lg px-4 py-2 fw-bold text-decoration-none rounded-pill" style={{ borderColor: '#00C6FF', color: 'white' }}>
-               <i className="bi bi-download me-2"></i> DOWNLOAD RESUME
+           <a 
+             href="/resume.pdf" 
+             download 
+             className="btn btn-lg px-5 py-3 fw-bold rounded-pill btn-cv-animated d-flex align-items-center gap-2"
+           >
+               {/* Icon Download */}
+               <FaDownload className="icon-bounce" /> 
+               DOWNLOAD CV
            </a>
         </div>
 
