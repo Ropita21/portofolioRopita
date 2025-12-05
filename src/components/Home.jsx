@@ -1,54 +1,71 @@
 import React from 'react';
 
 const Home = ({ setActivePage }) => {
+  
+  // --- PENGATURAN FOTO PROFIL ---
+  const profileImg = "/poto.png"; 
+
   return (
-    <section className="d-flex flex-column align-items-center justify-content-center text-center min-vh-100 pt-5">
+   
+    <section 
+      id="home"
+      className="d-flex flex-column align-items-center justify-content-center text-center min-vh-100"
+      style={{ paddingTop: '120px' }} 
+    >
       <div className="container">
         
-        {/* --- FOTO PROFIL (ANIMASI MELAYANG) --- */}
+        {/* --- FOTO PROFIL --- */}
         <div className="mb-4 d-flex justify-content-center animate-float">
            <div className="rounded-circle bg-dark border border-secondary position-relative d-flex align-items-center justify-content-center overflow-hidden" 
-                style={{width: '160px', height: '160px', boxShadow: '0 0 50px rgba(0, 198, 255, 0.4)'}}>
-              {/* Pastikan file gambar ada di public atau import dari assets */}
+                style={{width: '200px', height: '200px', boxShadow: '0 0 50px rgba(0, 198, 255, 0.4)'}}>
+              
               <img 
-                src="https://via.placeholder.com/160" 
+                src={profileImg} 
                 alt="Ropita Profile" 
                 className="w-100 h-100 object-fit-cover" 
               />
            </div>
         </div>
 
-        {/* --- IDENTITAS ROPITA (DATA ANALYST) --- */}
+        {/* --- IDENTITAS --- */}
         <h1 className="display-4 fw-bold mb-3 text-white">
           Hi, I'm <br />
-          <span className="text-gradient">ROPITA YOHANA SITUMORANG</span>
+          <span className="text-gradient" style={{
+            background: 'linear-gradient(90deg, #00C6FF 0%, #0072FF 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}>
+            ROPITA YOHANA SITUMORANG
+          </span>
         </h1>
         
         <h3 className="text-white mb-4 fw-normal" style={{letterSpacing: '2px'}}>DATA ANALYST</h3>
 
         <p className="text-white-50 mb-5 mx-auto fs-5" style={{ maxWidth: '750px', lineHeight: '1.6' }}>
           <span className="text-white d-block mb-2 fst-italic">"Empowering Businesses with Insights"</span>
-          Fokus pada pengolahan data besar, visualisasi interaktif, dan pemodelan statistik untuk pengambilan keputusan yang lebih cerdas.
+          Mahasiswa Data Analyst yang fokus pada pengolahan data besar, visualisasi, dan pemodelan statistik untuk pengambilan keputusan yang lebih baik.
         </p>
         
-        {/* --- TOMBOL MAGIC --- */}
+        {/* --- TOMBOL --- */}
         <div className="d-flex justify-content-center gap-3">
-           <button className="btn-magic" onClick={() => setActivePage('projects')}>
-              <span className="btn-magic-inner">Lihat Analisis Saya</span>
-           </button>
-           
-           <button className="btn btn-outline-light rounded-pill px-4 py-2" onClick={() => setActivePage('contact')}>
-              Hubungi Saya
-           </button>
+           {/* Tombol Resume */}
+           <a href="/resume.pdf" download className="btn btn-outline-light btn-lg px-4 py-2 fw-bold text-decoration-none rounded-pill" style={{ borderColor: '#00C6FF', color: 'white' }}>
+               <i className="bi bi-download me-2"></i> DOWNLOAD RESUME
+           </a>
         </div>
 
-        {/* --- TECH STACK (DATA TOOLS) --- */}
+        {/* --- TECH STACK --- */}
         <div className="mt-5 mx-auto" style={{maxWidth: '800px'}}>
-          <div className="card-glass p-4">
-            <h5 className="text-white-50 mb-4 small text-uppercase" style={{letterSpacing: '2px'}}>Analytical Tools</h5>
+          <div className="p-4" style={{ 
+              background: 'rgba(255, 255, 255, 0.05)', 
+              backdropFilter: 'blur(10px)', 
+              borderRadius: '15px',
+              border: '1px solid rgba(255, 255, 255, 0.1)' 
+          }}>
+            <h5 className="text-white-50 mb-4 small text-uppercase" style={{letterSpacing: '2px'}}>Tools Keahlian</h5>
             <div className="d-flex flex-wrap justify-content-center gap-3">
-               {['Python', 'SQL', 'Tableau', 'Power BI', 'Excel', 'Pandas', 'R', 'NumPy'].map((tech) => (
-                  <span key={tech} className="badge-tech">
+               {['Python', 'SQL', 'Tableau', 'Power BI', 'Excel', 'R Studio'].map((tech) => (
+                  <span key={tech} className="badge bg-dark border border-secondary px-3 py-2" style={{ fontSize: '0.9rem' }}>
                     {tech}
                   </span>
                ))}

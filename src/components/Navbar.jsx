@@ -1,32 +1,67 @@
 import React from 'react';
-import { Navbar, Nav, Container, Button } from 'react-bootstrap';
-import { FaChartBar } from 'react-icons/fa'; 
 
-const MyNavbar = () => {
-  return ( // Dimulai dari sini, kita menggunakan JSX
-    <Navbar variant="dark" expand="lg" style={{ backgroundColor: '#0a1930' }}>
-      <Container>
-        {/* Menggunakan sintaks tag HTML/Komponen (e.g., <Navbar.Brand>) */}
-        <Navbar.Brand href="#home">
-          {/* JSX memungkinkan kita mencampurkan JavaScript (variabel/ekspresi) dalam kurung kurawal {} */}
-          <FaChartBar size={24} color="#ff9000" style={{ marginRight: '8px' }} />
-          **B.H. Portfolio**
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            {/* Menggunakan atribut standar HTML (href, className) dan atribut khusus komponen React-Bootstrap (variant) */}
-            <Nav.Link href="#home" className="text-white mx-2">HOME</Nav.Link>
-            {/* ... elemen navigasi lainnya ... */}
-            <Nav.Link href="#contact" className="p-0 ms-3">
-              <Button variant="warning" className="fw-bold py-2 px-4" style={{ backgroundColor: '#ff9000', borderColor: '#ff9000', color: 'white' }}>
+const MyNavbar = ({ activePage, setActivePage }) => {
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark fixed-top py-3 navbar-glass">
+      <div className="container">
+        {/* Logo / Brand */}
+        <a className="navbar-brand fw-bold fs-4" href="#" onClick={() => setActivePage('home')}>
+          <i className="bi bi-bar-chart-line-fill text-warning me-2"></i>
+          <span className="text-gradient">Portofolio</span>Ropita
+        </a>
+        
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto align-items-center">
+            
+            {/* LINK 1: HOME */}
+            <li className="nav-item">
+              <button 
+                className={`nav-link btn btn-link text-decoration-none text-uppercase ${activePage === 'home' ? 'text-white fw-bold' : 'text-white-50'}`}
+                onClick={() => setActivePage('home')}
+              >
+                HOME
+              </button>
+            </li>
+
+            {/* LINK 2: CERTIFICATES */}
+            <li className="nav-item">
+              <button 
+                className={`nav-link btn btn-link text-decoration-none text-uppercase ${activePage === 'certificates' ? 'text-white fw-bold' : 'text-white-50'}`}
+                onClick={() => setActivePage('certificates')}
+              >
+                CERTIFICATES
+              </button>
+            </li>
+
+            {/* LINK 3: PROJECTS */}
+            <li className="nav-item">
+              <button 
+                className={`nav-link btn btn-link text-decoration-none text-uppercase ${activePage === 'projects' ? 'text-white fw-bold' : 'text-white-50'}`}
+                onClick={() => setActivePage('projects')}
+              >
+                PROJECTS
+              </button>
+            </li>
+
+            {/* LINK 4: CONTACT (Button Style) */}
+            <li className="nav-item ms-lg-3 mt-3 mt-lg-0">
+              <button 
+                className="btn btn-warning fw-bold px-4 rounded-pill"
+                style={{ backgroundColor: '#ff9000', border: 'none', color: 'white' }}
+                onClick={() => setActivePage('contact')}
+              >
                 CONTACT
-              </Button>
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+              </button>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 
