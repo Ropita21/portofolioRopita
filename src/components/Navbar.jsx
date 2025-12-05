@@ -1,67 +1,96 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 
 const MyNavbar = ({ activePage, setActivePage }) => {
+  // State untuk mengatur apakah menu sedang terbuka atau tertutup
+  const [expanded, setExpanded] = useState(false);
+
+  // Fungsi agar saat link diklik, menu hamburger otomatis menutup sendiri (Penting buat HP!)
+  const handleNavClick = (page) => {
+    setActivePage(page);
+    setExpanded(false); // Tutup menu setelah klik
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark fixed-top py-3 navbar-glass">
-      <div className="container">
-        {/* Logo / Brand */}
-        <a className="navbar-brand fw-bold fs-4" href="#" onClick={() => setActivePage('home')}>
+    <Navbar 
+      expand="lg" 
+      variant="dark" 
+      fixed="top" 
+      className="py-3 navbar-glass"
+      expanded={expanded} // State pengontrol
+      onToggle={() => setExpanded(!expanded)} // Handler saat tombol hamburger ditekan
+      style={{
+        backgroundColor: 'rgba(0, 0, 0, 0.9)', // Latar belakang semi-transparan
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(255,255,255,0.1)'
+      }}
+    >
+      <Container>
+        {/* LOGO BRAND */}
+        <Navbar.Brand 
+          href="#" 
+          onClick={() => handleNavClick('home')}
+          className="fw-bold fs-4 d-flex align-items-center"
+        >
           <i className="bi bi-bar-chart-line-fill text-warning me-2"></i>
-          <span className="text-gradient">Portofolio</span>Ropita
-        </a>
+          <span>
+            <span className="text-gradient" style={{
+               background: 'linear-gradient(90deg, #00C6FF 0%, #0072FF 100%)',
+               WebkitBackgroundClip: 'text',
+               WebkitTextFillColor: 'transparent'
+            }}>Portofolio</span>
+            <span className="text-white">Ropita</span>
+          </span>
+        </Navbar.Brand>
         
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        {/* TOMBOL HAMBURGER (TOGGLE) */}
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto align-items-center">
+        {/* MENU LINK */}
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="ms-auto align-items-center gap-2">
             
             {/* LINK 1: HOME */}
-            <li className="nav-item">
-              <button 
-                className={`nav-link btn btn-link text-decoration-none text-uppercase ${activePage === 'home' ? 'text-white fw-bold' : 'text-white-50'}`}
-                onClick={() => setActivePage('home')}
-              >
-                HOME
-              </button>
-            </li>
+            <Nav.Link 
+              onClick={() => handleNavClick('home')}
+              className={`text-uppercase px-3 ${activePage === 'home' ? 'text-white fw-bold' : 'text-white-50'}`}
+            >
+              HOME
+            </Nav.Link>
 
             {/* LINK 2: CERTIFICATES */}
-            <li className="nav-item">
-              <button 
-                className={`nav-link btn btn-link text-decoration-none text-uppercase ${activePage === 'certificates' ? 'text-white fw-bold' : 'text-white-50'}`}
-                onClick={() => setActivePage('certificates')}
-              >
-                CERTIFICATES
-              </button>
-            </li>
+            <Nav.Link 
+              onClick={() => handleNavClick('certificates')}
+              className={`text-uppercase px-3 ${activePage === 'certificates' ? 'text-white fw-bold' : 'text-white-50'}`}
+            >
+              CERTIFICATES
+            </Nav.Link>
 
             {/* LINK 3: PROJECTS */}
-            <li className="nav-item">
-              <button 
-                className={`nav-link btn btn-link text-decoration-none text-uppercase ${activePage === 'projects' ? 'text-white fw-bold' : 'text-white-50'}`}
-                onClick={() => setActivePage('projects')}
-              >
-                PROJECTS
-              </button>
-            </li>
+            <Nav.Link 
+              onClick={() => handleNavClick('projects')}
+              className={`text-uppercase px-3 ${activePage === 'projects' ? 'text-white fw-bold' : 'text-white-50'}`}
+            >
+              PROJECTS
+            </Nav.Link>
 
-            {/* LINK 4: CONTACT (Button Style) */}
-            <li className="nav-item ms-lg-3 mt-3 mt-lg-0">
-              <button 
-                className="btn btn-warning fw-bold px-4 rounded-pill"
-                style={{ backgroundColor: '#ff9000', border: 'none', color: 'white' }}
-                onClick={() => setActivePage('contact')}
-              >
-                CONTACT
-              </button>
-            </li>
+            {/* LINK 4: CONTACT (BUTTON) */}
+            <Button 
+              onClick={() => handleNavClick('contact')}
+              className="fw-bold px-4 rounded-pill ms-lg-2 mt-3 mt-lg-0"
+              style={{ 
+                background: 'linear-gradient(90deg, #FF9000 0%, #FF5000 100%)',
+                border: 'none', 
+                color: 'white' 
+              }}
+            >
+              CONTACT
+            </Button>
 
-          </ul>
-        </div>
-      </div>
-    </nav>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
