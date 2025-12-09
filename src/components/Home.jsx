@@ -68,7 +68,7 @@ const Home = ({ setActivePage }) => {
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>
-            ROPITA YOHANA SITUMORANG
+            ROPITA SITUMORANG
           </span>
         </h1>
         
@@ -76,7 +76,8 @@ const Home = ({ setActivePage }) => {
 
         <p className="text-white-50 mb-5 mx-auto fs-5" style={{ maxWidth: '750px', lineHeight: '1.6' }}>
           <span className="text-white d-block mb-2 fst-italic">"Empowering Businesses with Insights"</span>
-          Mahasiswa Data Analyst yang fokus pada pengolahan data besar, visualisasi, dan pemodelan statistik untuk pengambilan keputusan yang lebih baik.
+          Mahasiswa Aktif S1 Teknik Informatika Pengalaman Magang sebagai Web Development yang berfokus pembuatan aplikasi bisnis E-Commerce dan MSIB Batch 7
+          Data Science Track yang fokus pada pengolahan data besar, visualisasi, dan pemodelan statistik untuk pengambilan keputusan yang lebih baik pada bisnis.
         </p>
         
         {/* --- TOMBOL DOWNLOAD CV (UPDATED) --- */}
@@ -102,7 +103,7 @@ const Home = ({ setActivePage }) => {
           }}>
             <h5 className="text-white-50 mb-4 small text-uppercase" style={{letterSpacing: '2px'}}>Tools Keahlian</h5>
             <div className="d-flex flex-wrap justify-content-center gap-3">
-               {['Python', 'SQL', 'Tableau', 'Power BI', 'Excel', 'R Studio'].map((tech) => (
+               {['Python', 'SQL', 'Looker Studio', 'BigQuery', 'Excel', 'Machine Learning'].map((tech) => (
                   <span key={tech} className="badge bg-dark border border-secondary px-3 py-2" style={{ fontSize: '0.9rem' }}>
                     {tech}
                   </span>

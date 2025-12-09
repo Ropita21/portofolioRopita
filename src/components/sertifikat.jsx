@@ -4,28 +4,45 @@ import { FaCertificate, FaEye, FaAward } from 'react-icons/fa';
 
 import magangImg from '../asset/Magang.jpeg';
 import msib from '../asset/MSIB BATCH 7.jpeg';
+import panitiaUKM from '../asset/UKM Bendahara.jpeg';
+import panitiaUKM2 from '../asset/wakil ketua psdm.jpeg';
 import panitia from '../asset/Panitia Interview.jpeg';
+
 
 const certificateData = [
   { 
     id: 1, 
-    title: '-', 
-    issuer: '-', 
-    date: '-',
+    title: ' Maganga Web Developer', 
+    issuer: 'PT.Total Karya Berkah', 
+    date: '2025',
     image:magangImg,
   },
   { 
     id: 2, 
     title: 'MSIB BATCH 7', 
-    issuer: '-', 
-    date: '-',
+    issuer: 'Startup Campus', 
+    date: '2024',
     image:msib,
   },
   { 
     id: 3, 
-    title: '-', 
-    issuer: '-', 
-    date: '-',
+    title: 'Bendahara UKM (Big Famaly Of Imformatics Student Mikroskil)', 
+    issuer: 'BITSMIKRO', 
+    date: '2023',
+    image:panitiaUKM,
+  },
+  { 
+    id: 4, 
+    title: 'wakil ketua PSDM UKM', 
+    issuer: 'BITSMIKRO', 
+    date: '2025',
+    image:panitiaUKM2,
+  },
+  { 
+    id: 5, 
+    title: 'Panitia Interview', 
+    issuer: 'BITSMIKRO', 
+    date: '2024',
     image:panitia,
   },
   
